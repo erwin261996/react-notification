@@ -4,9 +4,6 @@ import { IoNotificationsOutline } from "react-icons/io5";
 // Components
 import { CustomNotification } from "./Components";
 
-// Css
-import "./index.css";
-
 function App() {
   return (
     <Box

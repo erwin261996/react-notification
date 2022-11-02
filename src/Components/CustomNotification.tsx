@@ -4,6 +4,7 @@ import { Box } from "@chakra-ui/react";
 // Components
 import { MotionBadge } from "../Components";
 
+// Interfaces
 interface CustomNotificationProps extends PropsWithChildren {}
 
 export function CustomNotification({ children }: CustomNotificationProps) {
@@ -31,6 +32,7 @@ export function CustomNotification({ children }: CustomNotificationProps) {
         margin={"6px 0px 0px 6px"}
       />
       {children}
+
       {count > 0 && (
         <MotionBadge value={count} borderRadius={styleBadgeValue} />
       )}

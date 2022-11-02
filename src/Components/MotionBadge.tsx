@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { Badge } from "@chakra-ui/react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 
+// Interfaces
 interface MotionBadgeProps {
   value: number;
   borderRadius: string;
 }
 
 export function MotionBadge({ value, borderRadius = "50%" }: MotionBadgeProps) {
+  // FramerMotion
   const MotionBadge = motion(Badge);
   const controls = useAnimation();
 
@@ -18,6 +20,7 @@ export function MotionBadge({ value, borderRadius = "50%" }: MotionBadgeProps) {
       });
     }
   }, [value]);
+
   return (
     <MotionBadge
       ml="1"
