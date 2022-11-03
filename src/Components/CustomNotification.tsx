@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 // Components
-import { MotionBadge } from "../Components";
+import { MotionBadge } from "./MotionBadge";
 
 // Interfaces
 interface CustomNotificationProps extends PropsWithChildren {}
@@ -17,23 +17,31 @@ export function CustomNotification({ children }: CustomNotificationProps) {
   const MotionButton = motion(Box);
 
   return (
-    <Box position={"relative"} onClick={() => setCount((prev) => prev + 1)}>
+    <Box
+      cursor="pointer"
+      onClick={() => setCount((prev) => prev + 1)}
+      position="relative"
+    >
       <MotionButton
-        borderRadius={"20%"}
-        width={"150px"}
-        height={"150px"}
-        bg={"white"}
-        position={"static"}
+        alignItems="center"
+        bg="white"
+        borderRadius="20%"
+        display="flex"
         dragConstraints={{ left: -100, right: 100 }}
+        height="150px"
+        justifyContent="center"
+        position="relative"
         whileHover={{ scale: 1 }}
         whileTap={{ scale: 0.9 }}
+        width="150px"
       >
         {children}
       </MotionButton>
 
-      {count > 0 && (
+      <MotionBadge value={count} borderRadius={styleBadgeValue} />
+      {/* {count > 0 && (
         <MotionBadge value={count} borderRadius={styleBadgeValue} />
-      )}
+      )} */}
     </Box>
   );
 }

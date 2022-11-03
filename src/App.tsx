@@ -2,37 +2,37 @@ import { Box, Center } from "@chakra-ui/react";
 import { IoNotificationsOutline } from "react-icons/io5";
 
 // Components
-import { CustomNotification } from "./Components";
+import { CustomNotification, Controllers, ShowController } from "@/Components";
+
+// Middleware
+import { useSetting } from "@/middleware";
 
 function App() {
+  const { showController } = useSetting();
+
   return (
     <Box
-      position={"relative"}
-      display={"flex"}
-      justifyContent={"center"}
-      alignItems={"center"}
-      width={"100%"}
-      height={"100vh"}
+      alignItems="center"
+      display="flex"
+      height="100vh"
+      justifyContent="center"
+      position="relative"
+      width="100%"
     >
       <Center
-        width={"400px"}
-        height={"430px"}
-        bg={"blue.900"}
-        borderRadius={"20"}
+        bg="blue.900"
+        borderRadius="20"
+        flexDirection="column"
+        height="430px"
+        position="relative"
+        width="400px"
       >
-        <Box>
-          <CustomNotification>
-            <IoNotificationsOutline
-              color={"#1a365d"}
-              size={70}
-              style={{
-                position: "absolute",
-                top: 40,
-                left: 40,
-              }}
-            />
-          </CustomNotification>
-        </Box>
+        <ShowController />
+        <CustomNotification>
+          <IoNotificationsOutline color="#1a365d" size={70} />
+        </CustomNotification>
+
+        {showController && <Controllers />}
       </Center>
     </Box>
   );
