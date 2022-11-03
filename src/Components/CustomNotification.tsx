@@ -38,10 +38,9 @@ export function CustomNotification({ children }: CustomNotificationProps) {
         {children}
       </MotionButton>
 
-      <MotionBadge value={count} borderRadius={styleBadgeValue} />
-      {/* {count > 0 && (
+      {count > 0 && (
         <MotionBadge value={count} borderRadius={styleBadgeValue} />
-      )} */}
+      )}
     </Box>
   );
 }
