@@ -1,4 +1,4 @@
-import { Box, Center } from "@chakra-ui/react";
+import { Layout } from "./Layout";
 import { IoNotificationsOutline } from "react-icons/io5";
 
 // Components
@@ -11,30 +11,18 @@ function App() {
   const { showController } = useSetting();
 
   return (
-    <Box
-      alignItems="center"
-      display="flex"
-      height="100vh"
-      justifyContent="center"
-      position="relative"
-      width="100%"
-    >
-      <Center
-        bg="blue.900"
-        borderRadius="20"
-        flexDirection="column"
-        height="430px"
-        position="relative"
-        width="400px"
-      >
-        <ShowController />
-        <CustomNotification>
-          <IoNotificationsOutline color="#1a365d" size={70} />
-        </CustomNotification>
+    <Layout>
+      {/* We show the icon (eye) for Controller Badge */}
+      <ShowController />
 
-        {showController && <Controllers />}
-      </Center>
-    </Box>
+      {/* Button Notification */}
+      <CustomNotification>
+        <IoNotificationsOutline color="#1a365d" size={70} />
+      </CustomNotification>
+
+      {/* We show Controller Badge to position the badge in the Button Notification */}
+      {showController && <Controllers />}
+    </Layout>
   );
 }
 

@@ -2,6 +2,8 @@ import { useMemo, useState, PropsWithChildren } from "react";
 import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
+import { useSetting } from "@/middleware";
+
 // Components
 import { MotionBadge } from "./MotionBadge";
 
@@ -10,28 +12,29 @@ interface CustomNotificationProps extends PropsWithChildren {}
 
 export function CustomNotification({ children }: CustomNotificationProps) {
   const [count, setCount] = useState<number>(0);
+  const { showController } = useSetting();
 
   const styleBadgeValue = useMemo(() => (count > 99 ? "20%" : "50%"), [count]);
 
-  //FramerMotion
+  // Add Components Chakra (Box) to FramerMotion
   const MotionButton = motion(Box);
 
   return (
-    <Box
-      cursor="pointer"
-      onClick={() => setCount((prev) => prev + 1)}
-      position="relative"
-    >
+    <Box position="relative">
       <MotionButton
         alignItems="center"
         bg="white"
         borderRadius="20%"
+        cursor="pointer"
         display="flex"
-        dragConstraints={{ left: -100, right: 100 }}
         height="150px"
         justifyContent="center"
+        onClick={() => setCount((prev) => prev + 1)}
         position="relative"
-        whileHover={{ scale: 1 }}
+        animate={{
+          y: (showController && 5) || 0,
+        }}
+        transition={{ duration: 0.3 }}
         whileTap={{ scale: 0.9 }}
         width="150px"
       >

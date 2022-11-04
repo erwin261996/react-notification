@@ -1,6 +1,9 @@
 import { Box } from "@chakra-ui/react";
 import BadgePosition from "./BadgePosition";
 
+// Motions
+import { motion } from "framer-motion";
+
 // types
 import { PositionTypes } from "@/interfaces";
 import { useSetting } from "@/middleware";
@@ -12,8 +15,10 @@ interface BadgeProps {
 export function LittleBadge({ position }: BadgeProps) {
   const { positionBadge, setPositionBadge } = useSetting();
 
+  const BoxMotion = motion(Box);
+
   return (
-    <Box
+    <BoxMotion
       alignItems="center"
       cursor="pointer"
       display="flex"
@@ -22,6 +27,13 @@ export function LittleBadge({ position }: BadgeProps) {
       onClick={() => setPositionBadge(position)}
       position="relative"
       width="50px"
+      variants={{
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+          y: 0,
+          opacity: 1,
+        },
+      }}
     >
       <Box
         bg={(positionBadge === position && "gray.400") || "gray.200"}
@@ -31,6 +43,6 @@ export function LittleBadge({ position }: BadgeProps) {
       ></Box>
 
       <BadgePosition move={position} />
-    </Box>
+    </BoxMotion>
   );
 }
