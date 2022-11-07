@@ -1,4 +1,4 @@
-export * from "./MotionBadge";
-export * from "./CustomNotification";
+export * from "./Motions/MotionBadge";
+export * from "./NotificationBadge";
 export * from "./Controllers";
-export * from "./Controllers/ShowController";
+export * from "./Controllers/IconsController";

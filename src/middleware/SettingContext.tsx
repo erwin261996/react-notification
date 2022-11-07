@@ -8,6 +8,9 @@ interface AppContextInterface {
   ) => void;
   showController: boolean;
   setShowController: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+
+  sun: boolean;
+  setSun: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
 const AppCtx = createContext<AppContextInterface>({} as AppContextInterface);
@@ -15,6 +18,7 @@ const AppCtx = createContext<AppContextInterface>({} as AppContextInterface);
 export function SettingProvider({ children }: PropsWithChildren) {
   const [positionBadge, setPositionBadge] = useState<PositionTypes>("rightTop");
   const [showController, setShowController] = useState<boolean>(false);
+  const [sun, setSun] = useState<boolean>(true);
 
   return (
     <AppCtx.Provider
@@ -23,6 +27,8 @@ export function SettingProvider({ children }: PropsWithChildren) {
         setPositionBadge,
         showController,
         setShowController,
+        sun,
+        setSun,
       }}
     >
       {children}

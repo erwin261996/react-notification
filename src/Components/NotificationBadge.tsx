@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 import { useSetting } from "@/middleware";
 
 // Components
-import { MotionBadge } from "./MotionBadge";
+import { MotionBadge } from "./Motions/MotionBadge";
 
 // Interfaces
-interface CustomNotificationProps extends PropsWithChildren {}
+interface NotificationBadgeProps extends PropsWithChildren {}
 
-export function CustomNotification({ children }: CustomNotificationProps) {
+export function NotificationBadge({ children }: NotificationBadgeProps) {
   const [count, setCount] = useState<number>(0);
   const { showController } = useSetting();
 
