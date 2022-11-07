@@ -11,11 +11,17 @@ import { useSetting } from "@/middleware";
 export function IconsController() {
   const { showController, setShowController, sun, setSun } = useSetting();
 
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, setColorMode, toggleColorMode } = useColorMode();
+
+  useEffect(() => {
+    if (localStorage.getItem("chakra-ui-color-mode")) {
+      setSun(colorMode === "dark");
+    }
+  }, []);
 
   const handleColorMode = () => {
     toggleColorMode();
-    setSun(colorMode === "dark" ? true : false);
+    setSun(colorMode === "dark");
   };
 
   return (
