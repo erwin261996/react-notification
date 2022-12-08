@@ -1,35 +1,32 @@
-import { createContext, useState, PropsWithChildren } from "react";
-import { PositionTypes } from "@/interfaces";
+import { createContext, useReducer, PropsWithChildren, Dispatch } from "react";
+import reducer, {ContextType} from "./reducers"
 
-interface AppContextInterface {
-  positionBadge: PositionTypes;
-  setPositionBadge: (
-    value: PositionTypes | ((prevVar: PositionTypes) => PositionTypes)
-  ) => void;
-  showController: boolean;
-  setShowController: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+const AppCtx = createContext<{
+  state: ContextType,
+  dispatch: Dispatch<any>,
+}>({
+  state: {
+    positionBadge: "rightTop",
+    showController: false,
+    sun: false,
+    code: false
+  },
+  dispatch: () => null
+});
 
-  sun: boolean;
-  setSun: (value: boolean | ((prevVar: boolean) => boolean)) => void;
-}
-
-const AppCtx = createContext<AppContextInterface>({} as AppContextInterface);
+const initialState: ContextType = {
+  positionBadge: "rightTop",
+  showController: false,
+  sun: false,
+  code: false,
+};
 
 export function SettingProvider({ children }: PropsWithChildren) {
-  const [positionBadge, setPositionBadge] = useState<PositionTypes>("rightTop");
-  const [showController, setShowController] = useState<boolean>(false);
-  const [sun, setSun] = useState<boolean>(true);
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
     <AppCtx.Provider
-      value={{
-        positionBadge,
-        setPositionBadge,
-        showController,
-        setShowController,
-        sun,
-        setSun,
-      }}
+      value={{ state, dispatch }}
     >
       {children}
     </AppCtx.Provider>

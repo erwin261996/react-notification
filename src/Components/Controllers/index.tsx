@@ -12,7 +12,7 @@ export function Controllers() {
 
   //Hooks
   const [active, setActive] = useState<boolean>(true);
-  const { showController } = useSetting();
+  const { state } = useSetting();
 
   // Cancelar el efecto en 1 segundo determinado
   useEffect(() => {
@@ -25,7 +25,7 @@ export function Controllers() {
       // Limipiamos los recursos antes que el componente salga de la pantalla.
       return () => clearTimeout(timer);
     }
-  }, [showController]);
+  }, [state.showController]);
 
   return (
     <ComponentBox

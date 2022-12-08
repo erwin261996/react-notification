@@ -7,13 +7,15 @@ import { motion } from "framer-motion";
 // types
 import { PositionTypes } from "@/interfaces";
 import { useSetting } from "@/middleware";
+import {Types} from "@/middleware/reducers"
+
 
 interface BadgeProps {
   position: PositionTypes;
 }
 
 export function LittleBadge({ position }: BadgeProps) {
-  const { positionBadge, setPositionBadge } = useSetting();
+  const { state, dispatch } = useSetting();
 
   const BoxMotion = motion(Box);
 
@@ -24,7 +26,7 @@ export function LittleBadge({ position }: BadgeProps) {
       display="flex"
       height="50px"
       justifyContent="center"
-      onClick={() => setPositionBadge(position)}
+      onClick={() => dispatch({ type: Types.positionBadge, payload: position }) }
       position="relative"
       width="50px"
       variants={{
@@ -36,7 +38,7 @@ export function LittleBadge({ position }: BadgeProps) {
       }}
     >
       <Box
-        bg={(positionBadge === position && "gray.400") || "gray.200"}
+        bg={(state.positionBadge === position && "gray.400") || "gray.200"}
         borderRadius="20%"
         width="40px"
         height="40px"

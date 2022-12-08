@@ -11,8 +11,8 @@ import { MotionBadge } from "./Motions/MotionBadge";
 interface NotificationBadgeProps extends PropsWithChildren {}
 
 export function NotificationBadge({ children }: NotificationBadgeProps) {
-  const [count, setCount] = useState<number>(0);
-  const { showController } = useSetting();
+  const [count, setCount] = useState<number>(90);
+  const { state } = useSetting();
 
   const styleBadgeValue = useMemo(() => (count > 99 ? "20%" : "50%"), [count]);
 
@@ -32,7 +32,7 @@ export function NotificationBadge({ children }: NotificationBadgeProps) {
         onClick={() => setCount((prev) => prev + 1)}
         position="relative"
         animate={{
-          y: (showController && 5) || 0,
+          y: (state.showController && 5) || 0,
         }}
         transition={{ duration: 0.3 }}
         whileTap={{ scale: 0.9 }}

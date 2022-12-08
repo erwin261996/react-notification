@@ -14,7 +14,7 @@ interface MotionBadgeProps {
 }
 
 export function MotionBadge({ value, borderRadius = "50%" }: MotionBadgeProps) {
-  const { positionBadge } = useSetting();
+  const { state } = useSetting();
 
   // FramerMotion
   const MotionBadge = motion(Badge);
@@ -23,7 +23,6 @@ export function MotionBadge({ value, borderRadius = "50%" }: MotionBadgeProps) {
   useEffect(() => {
     if (value == 100) {
       controls.start({
-        x: 100,
         borderRadius: (borderRadius == "50%" && []) || ["50%", "30%"],
       });
     }
@@ -40,7 +39,7 @@ export function MotionBadge({ value, borderRadius = "50%" }: MotionBadgeProps) {
       padding={value < 10 ? "8px 20px" : "8px 13.3px"}
       position="absolute"
       shadow="lg"
-      style={styleMoveString[positionBadge as keyof typeof styleMoveString]}
+      style={styleMoveString[state.positionBadge as keyof typeof styleMoveString]}
       transition={{ duration: 0.18, ease: "easeOut" }}
       userSelect="none"
     >

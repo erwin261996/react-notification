@@ -1,26 +1,34 @@
 import { useEffect } from "react";
-import { Box, useColorMode } from "@chakra-ui/react";
+import { Box, Stack, useColorMode } from "@chakra-ui/react";
 
 // Icons
 import { HiEye, HiOutlineEyeOff } from "react-icons/hi";
 import { BsSun, BsSunFill } from "react-icons/bs";
+import { MdCode, MdCodeOff } from "react-icons/md"
 
 // Middleware
 import { useSetting } from "@/middleware";
+import { Types } from "@/middleware/reducers"
 
 export function IconsController() {
-  const { showController, setShowController, sun, setSun } = useSetting();
+  const { state, dispatch } = useSetting();
   const { colorMode, toggleColorMode } = useColorMode();
 
   useEffect(() => {
     if (localStorage.getItem("chakra-ui-color-mode")) {
-      setSun(localStorage.getItem("chakra-ui-color-mode") === "light");
+      dispatch({
+        type: Types.sun,
+        payload: (localStorage.getItem("chakra-ui-color-mode") === "light")
+      })
     }
   }, []);
 
   const handleColorMode = () => {
     toggleColorMode();
-    setSun(colorMode === "dark");
+    dispatch({
+      type: Types.sun,
+      payload: (colorMode === "dark") 
+    })
   };
 
   return (
@@ -33,18 +41,36 @@ export function IconsController() {
       top="20px"
     >
       <Box color="white" cursor="pointer" onClick={() => handleColorMode()}>
-        {(sun && <BsSunFill size={35} />) || <BsSun size={35} />}
+        {(state.sun && <BsSunFill size={35} />) || <BsSun size={35} />}
       </Box>
 
-      <Box
-        color="white"
-        cursor="pointer"
-        onClick={() => setShowController((prev) => !prev)}
-      >
-        {(showController && <HiEye size={35} />) || (
-          <HiOutlineEyeOff size={35} />
-        )}
-      </Box>
+      <Stack spacing={5} direction="row">
+        <Box
+          color="white"
+          cursor="pointer"
+          onClick={() => dispatch({
+            type: Types.code,
+            payload: !state.code
+          })}
+        >
+          {(state.code && <MdCode size={35} />) || (
+            <MdCodeOff size={35} />
+          )}
+        </Box>
+        <Box
+          color="white"
+          cursor="pointer"
+          onClick={() =>  dispatch({
+            type: Types.showController,
+            payload: !state.showController
+          })}
+        >
+          {(state.showController && <HiEye size={35} />) || (
+            <HiOutlineEyeOff size={35} />
+          )}
+        </Box>
+      </Stack>
+
     </Box>
   );
 }

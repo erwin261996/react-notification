@@ -8,7 +8,7 @@ import { NotificationBadge, Controllers, IconsController } from "@/Components";
 import { useSetting } from "@/middleware";
 
 function App() {
-  const { showController } = useSetting();
+  const { state } = useSetting();
 
   return (
     <Layout>
@@ -21,7 +21,7 @@ function App() {
       </NotificationBadge>
 
       {/* We show Controller Badge to position the badge in the Button Notification */}
-      {showController && <Controllers />}
+      {state.showController && <Controllers />}
     </Layout>
   );
 }
