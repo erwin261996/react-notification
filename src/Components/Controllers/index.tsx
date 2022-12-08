@@ -14,15 +14,15 @@ export function Controllers() {
   const [active, setActive] = useState<boolean>(true);
   const { state } = useSetting();
 
-  // Cancelar el efecto en 1 segundo determinado
+  // Cancel effect in 1 second
   useEffect(() => {
     if (active) {
       const timer = setTimeout(() => {
-        // Cancelamos el efecto de FramerMotion una ves terminado el tiempo de espera.
+        // We cancel the effect of 'FramerMotion' once the time is over.
         setActive(false);
       }, 1000);
 
-      // Limipiamos los recursos antes que el componente salga de la pantalla.
+      // We clean up the resources, before the component exists the screen.
       return () => clearTimeout(timer);
     }
   }, [state.showController]);

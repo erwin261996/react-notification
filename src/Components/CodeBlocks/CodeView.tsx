@@ -10,6 +10,7 @@ export const CodeView: CodeString[] = [
   {
     key: "dependency",
     type: "json",
+    title: 'package.json',
     code: `// package.json
 "dependencies": {
   "@chakra-ui/react": "^2.3.6",
@@ -25,21 +26,25 @@ export const CodeView: CodeString[] = [
   {
     key: "main",
     type: "tsx",
+    title: 'main.tsx',
     code: main,
   },
   {
     key: "app",
     type: "tsx",
+    title: 'App.tsx',
     code: App,
   },
   {
     key: "notification",
     type: "tsx",
+    title: 'NotificationBadge.tsx',
     code: NotificationBadge,
   },
   {
     key: "badge",
     type: "tsx",
+    title: 'MotionBadge.tsx',
     code: MotionBadge(),
   },
 ]

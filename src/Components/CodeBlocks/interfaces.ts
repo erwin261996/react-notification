@@ -4,5 +4,6 @@ type CodeTypes = "json" | "tsx";
 export interface CodeString {
   key: CodeKeys;
   type: CodeTypes;
+  title: string;
   code: string;
 }

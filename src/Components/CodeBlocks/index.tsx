@@ -1,5 +1,5 @@
 import GlobalTheme from '@atlaskit/theme/components';
-import { CodeBlock } from '@atlaskit/code';
+import CodeViewsBrowser from '../CodeViewsBrowser';
 
 import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar"
@@ -12,18 +12,18 @@ export const CodeBlocks = () => {
     <PerfectScrollbar
       style={{
         maxWidth: "750px",
-        maxHeight: "80vh"
+        maxHeight: "80vh",
       }}
       options={{ suppressScrollY: false }}
     >
       <GlobalTheme.Provider  value={() => ({ mode: "dark",  })}>
         {
-          CodeView.map(({key, type, code}) => (
-            <CodeBlock 
+          CodeView.map(({key, type, title, code}) => (
+            <CodeViewsBrowser 
               key={key}
               language={type}
-              showLineNumbers={true}
-              text={code}
+              title={title}
+              textCode={code}
             />
           ))
         }
