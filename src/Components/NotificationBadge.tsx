@@ -17,11 +17,11 @@ export function NotificationBadge({ children }: NotificationBadgeProps) {
   const styleBadgeValue = useMemo(() => (count > 99 ? "20%" : "50%"), [count]);
 
   // Add Components Chakra (Box) to FramerMotion
-  const MotionButton = motion(Box);
+  const MotionBox = motion(Box);
 
   return (
     <Box position="relative">
-      <MotionButton
+      <MotionBox
         alignItems="center"
         bg="white"
         borderRadius="20%"
@@ -39,7 +39,7 @@ export function NotificationBadge({ children }: NotificationBadgeProps) {
         width="150px"
       >
         {children}
-      </MotionButton>
+      </MotionBox>
 
       {count > 0 && (
         <MotionBadge value={count} borderRadius={styleBadgeValue} />
