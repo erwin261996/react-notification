@@ -5,6 +5,7 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar"
 
 import {CodeView} from "./CodeView"
+import {MotionBadge} from "./Badge"
 
 export const CodeBlocks = () => {
   return (
@@ -27,8 +28,10 @@ export const CodeBlocks = () => {
             />
           ))
         }
+        <MotionBadge />
       </GlobalTheme.Provider>
     </PerfectScrollbar>
+
   </>
   )
 }

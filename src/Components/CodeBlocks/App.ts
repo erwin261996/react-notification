@@ -1,10 +1,8 @@
-export const App = `// App.tsx
-import {Box} from "@chakra-ui/react"
+export const App = `import {Box} from "@chakra-ui/react"
 import { IoNotificationsOutline } from "react-icons/io5";
 
 // Components
 import {NotificationBadge} from "./Components/Notification"
-
 
 function App() {
   return (

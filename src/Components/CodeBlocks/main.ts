@@ -1,6 +1,4 @@
-export const main =
-`// main.tsx
-import React from "react";
+export const main = `import React from "react";
 import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -13,4 +11,4 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       </ChakraProvider>
   </React.StrictMode>
 );
-`
+`;

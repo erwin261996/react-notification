@@ -2,13 +2,12 @@ import { Box, Button, useClipboard } from "@chakra-ui/react";
 import {CodeBlock, SupportedLanguages} from "@atlaskit/code"
 
 export interface ICodeViewsBrowserProps {
-  key: string;
   language: SupportedLanguages;
   title?: string;
   textCode: string;
 }
 
-export default function CodeViewsBrowser ({key, language, title="", textCode=""}: ICodeViewsBrowserProps) {
+export default function CodeViewsBrowser ({language, title="", textCode=""}: ICodeViewsBrowserProps) {
   const {hasCopied, onCopy} = useClipboard(textCode)
 
   return (
@@ -22,8 +21,7 @@ export default function CodeViewsBrowser ({key, language, title="", textCode=""}
       >
           {hasCopied ? "Copied!" : "Copy"}
       </Button>
-      <CodeBlock 
-        key={key}
+      <CodeBlock
         language={language}
         showLineNumbers={true}
         text={textCode}
